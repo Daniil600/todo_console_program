@@ -41,7 +41,7 @@ public abstract class Service {
 
     public abstract NodeList getNodeList(String path);
 
-    public Task addNewTask() {
+    public Task addNewTask() throws StopException {
         Map<String, String> fields = getFields();
         Task task = new Task();
         task.setId(Integer.parseInt(fields.get("id")));
@@ -53,7 +53,7 @@ public abstract class Service {
         return task;
     }
 
-    private int checkInt() {
+    private int checkInt() throws StopException {
         System.out.println("Введите число: ");
         String idTask = scanner.nextLine();
         stopMethod(idTask);
@@ -68,7 +68,7 @@ public abstract class Service {
     }
 
 
-    public Task editTask() {
+    public Task editTask() throws StopException {
         System.out.println("Выберите id задачи которую хотите изменить");
         showTask();
         int id = checkInt();
@@ -78,7 +78,7 @@ public abstract class Service {
         return task;
     }
 
-    private Task editFieldInTask(Task task) {
+    private Task editFieldInTask(Task task) throws StopException {
         System.out.println("Что в задаче вы хотите изменить?");
         int count = 1;
         for (String field : FIELDS_FOR_EDIT) {
@@ -182,15 +182,11 @@ public abstract class Service {
             System.out.println(ANSI_PURPLE + ++countStatus + ") " + status.getName() + ANSI_RESET);
             statusMap.put(countStatus, status.getName());
         }
+
         System.out.println(ANSI_PURPLE + "Выберете число статуса, который вы хотите поставить: " + ANSI_RESET);
-        try {
-            String status = scanner.nextLine();
-            stopMethod(status);
-            return statusMap.get(Integer.parseInt(status));
-        } catch (InputMismatchException e) {
-            System.out.println(ANSI_RED + "Вы ввели неверное число" + ANSI_RESET);
-            return writeStatus();
-        }
+
+        return statusMap.get(checkInt());
+
     }
 
     private String writeDeadline() throws StopException {
@@ -199,7 +195,6 @@ public abstract class Service {
         stopMethod(data);
         Pattern pattern = pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
         Matcher matcher = pattern.matcher(data);
-
         if (matcher.find()) {
             return data;
         } else {
@@ -209,7 +204,7 @@ public abstract class Service {
 
     }
 
-    public Command consoleScanner() throws StopException {
+    public Command consoleScanner() {
         System.out.println("Введите команду: ");
         String userCommand = scanner.nextLine();
         for (Command command : Command.values()) {

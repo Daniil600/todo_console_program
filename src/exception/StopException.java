@@ -1,4 +1,4 @@
 package exception;
 
-public class StopException extends RuntimeException{
+public class StopException extends Exception{
 }

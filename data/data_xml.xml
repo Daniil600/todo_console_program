@@ -32,4 +32,11 @@
         <Deadline>2000-01-01</Deadline>
         <Status>new</Status>
     </Task>
+    <Task caption="Даня" id="6">
+        <Description>Сазонов</Description>
+        <Priority>10</Priority>
+        <Deadline>2100-01-01</Deadline>
+        <Status>done</Status>
+        <Complete>2023-08-27</Complete>
+    </Task>
 </ToDoList>
