@@ -11,10 +11,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static service.Service.*;
+
 public abstract class ParserAbstract {
 
-    public static final String[] ALL_FIELDS = new String[]{"id", "caption","Description", "Priority", "Deadline", "Status"};
-    public static final String[] TAG_NAME = new String[]{"Description", "Priority", "Deadline", "Status", "Complete"};
+
     public static final String[] ATTRIBUTE = new String[]{"id", "caption"};
 
     public static final Map<String, String> TAG_NAME_WITH_VALUES = new HashMap<>();
@@ -22,6 +23,7 @@ public abstract class ParserAbstract {
 
 
     public abstract Task fromElementToModel(Element element);
+
     public abstract Document fromModelToElement(List<Task> tasks);
 
     public LocalDate toLocalDate(String dateString) {
@@ -47,6 +49,7 @@ public abstract class ParserAbstract {
         }
 
     }
+
     public String fromStatus(Status status) {
         return status.getName();
     }
@@ -60,9 +63,9 @@ public abstract class ParserAbstract {
 
         NodeList nodeList = element.getElementsByTagName(TAG_NAME[index]);
         Node node = nodeList.item(0);
-        if(node != null){
+        if (node != null) {
             return node.getTextContent();
-        }else {
+        } else {
             return "none";
         }
 

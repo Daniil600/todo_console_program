@@ -13,6 +13,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
+import static service.Service.TAG_NAME;
+
 public class ParserXML extends ParserAbstract {
 
     public Task fromElementToModel(Element element) {

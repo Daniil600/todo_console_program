@@ -1,18 +1,18 @@
 package service;
 
 import application.command.Command;
+import exception.StopException;
 import model.Task;
 import model.status.Status;
 import org.w3c.dom.NodeList;
 import parser.ParserAbstract;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static application.color.ColorConsole.*;
-import static application.color.ColorConsole.ANSI_RESET;
-import static parser.ParserAbstract.ALL_FIELDS;
 
 public abstract class Service {
     public static List<Task> TASK_LIST = new ArrayList<>();
@@ -20,11 +20,17 @@ public abstract class Service {
     public static List<Task> IN_PROGRESS_TASK_LIST = new ArrayList<>();
     public static List<Task> DONE_TASK_LIST = new ArrayList<>();
 
+    public static final String[] ALL_FIELDS = new String[]{"id", "caption", "Description", "Priority", "Deadline", "Status"};
+    public static final String[] FIELDS_FOR_EDIT = new String[]{"caption", "Description", "Priority", "Deadline", "Status"};
+    public static final String[] TAG_NAME = new String[]{"Description", "Priority", "Deadline", "Status", "Complete"};
+
 
     ParserAbstract parser;
+    Scanner scanner;
 
     public Service(ParserAbstract parser) {
         this.parser = parser;
+        scanner = new Scanner(System.in);
     }
 
     public static final String PATH_XML_FORMAT = "data/data_xml.xml";
@@ -47,19 +53,83 @@ public abstract class Service {
         return task;
     }
 
-    public Task editTask() {
-        System.out.println("");
+    private int checkInt() {
+        System.out.println("Введите число: ");
+        String idTask = scanner.nextLine();
+        stopMethod(idTask);
+        int id = -1;
+        try {
+            id = Integer.parseInt(idTask);
+            return id;
+        } catch (RuntimeException e) {
+            System.out.println("Вы неправильно ввели данные");
+            return checkInt();
+        }
+    }
 
-        Task task = new Task();
+
+    public Task editTask() {
+        System.out.println("Выберите id задачи которую хотите изменить");
+        showTask();
+        int id = checkInt();
+        Task task = getTaskById(id);
+        editFieldInTask(task);
 
         return task;
     }
 
-    public Map<String, String> getFields() {
-        Scanner scanner = new Scanner(System.in);
+    private Task editFieldInTask(Task task) {
+        System.out.println("Что в задаче вы хотите изменить?");
+        int count = 1;
+        for (String field : FIELDS_FOR_EDIT) {
+            System.out.println(count++ + ") " + field);
+        }
+        int idField = checkInt();
+        if (FIELDS_FOR_EDIT.length < idField) {
+            System.out.println("Вашего числа нет среди id полей, попробуйте ещё раз");
+            editFieldInTask(task);
+        }
+        switch (idField) {
+            case 1:
+                System.out.println("Введите Заголовок");
+                task.setCaption(scanner.nextLine());
+                break;
+            case 2:
+                System.out.println("Введите Описание");
+                task.setDescription(scanner.nextLine());
+                break;
+            case 3:
+                System.out.println("Введите приоритет задачи: ");
+                task.setPriority(checkInt());
+                break;
+            case 4:
+                System.out.println("Введите дату дедлайна");
+                task.setDeadline(parser.toLocalDate(writeDeadline()));
+                break;
+            case 5:
+                System.out.println("Введите статус");
+                task.setStatus(parser.toStatus(writeStatus()));
+                if (task.getStatus() == Status.DONE) {
+                    task.setComplete(LocalDate.now());
+                }
+                break;
+        }
+        return task;
+    }
+
+    private Task getTaskById(int id) {
+        Optional<Task> optionalTask = TASK_LIST.stream().filter(task -> task.getId() == id).findFirst();
+        if (optionalTask.isPresent()) {
+            return optionalTask.get();
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    public Map<String, String> getFields() throws StopException {
         Map<String, String> dataForTask = new HashMap<>();
-        String[] fields = new String[ALL_FIELDS.length];
         System.out.println(ANSI_CYAN + "Для добавления нового задания введи следующие данные" + ANSI_RESET);
+        String userText;
 
         for (int i = 0; i < ALL_FIELDS.length; i++) {
             if (ALL_FIELDS[i].equals("id")) {
@@ -68,17 +138,20 @@ public abstract class Service {
             }
             System.out.println(ANSI_CYAN + "Введите " + ALL_FIELDS[i] + ANSI_RESET);
             if (ALL_FIELDS[i].equals("Deadline")) {
-                dataForTask.put(ALL_FIELDS[i], writeDeadline(scanner));
+                dataForTask.put(ALL_FIELDS[i], writeDeadline());
                 continue;
             }
             if (ALL_FIELDS[i].equals("Status")) {
-                dataForTask.put(ALL_FIELDS[i], writeStatus(scanner));
+                dataForTask.put(ALL_FIELDS[i], writeStatus());
                 continue;
             }
-            dataForTask.put(ALL_FIELDS[i], scanner.nextLine());
+            userText = scanner.nextLine();
+            stopMethod(userText);
+            dataForTask.put(ALL_FIELDS[i], userText);
         }
         return dataForTask;
     }
+
 
     private int getIdUnique() {
         return TASK_LIST.stream().map(Task::getId).mapToInt(Integer::intValue).max().getAsInt() + 1;
@@ -94,27 +167,36 @@ public abstract class Service {
         }
     }
 
-    private String writeStatus(Scanner scanner) {
+    public void removeModelFromListStatus(Task task) {
+        NEW_TASK_LIST.removeIf(taskNew -> taskNew.getId() == task.getId());
+        IN_PROGRESS_TASK_LIST.removeIf(taskInProgress -> taskInProgress.getId() == task.getId());
+        DONE_TASK_LIST.removeIf(taskDone -> taskDone.getId() == task.getId());
+    }
+
+
+    private String writeStatus() throws StopException {
         System.out.println(ANSI_PURPLE + "Выбирите один из возможных статусов : " + ANSI_RESET);
         int countStatus = 0;
         HashMap<Integer, String> statusMap = new HashMap<>();
         for (Status status : Status.values()) {
             System.out.println(ANSI_PURPLE + ++countStatus + ") " + status.getName() + ANSI_RESET);
-            statusMap.put(Integer.valueOf(countStatus), status.getName());
+            statusMap.put(countStatus, status.getName());
         }
         System.out.println(ANSI_PURPLE + "Выберете число статуса, который вы хотите поставить: " + ANSI_RESET);
         try {
-            return statusMap.get(scanner.nextInt());
+            String status = scanner.nextLine();
+            stopMethod(status);
+            return statusMap.get(Integer.parseInt(status));
         } catch (InputMismatchException e) {
             System.out.println(ANSI_RED + "Вы ввели неверное число" + ANSI_RESET);
-            return writeStatus(scanner);
+            return writeStatus();
         }
     }
 
-    private String writeDeadline(Scanner scanner) {
+    private String writeDeadline() throws StopException {
         System.out.println(ANSI_PURPLE + "Введите дату в формате '2000-01-01'" + ANSI_RESET);
         String data = scanner.nextLine();
-
+        stopMethod(data);
         Pattern pattern = pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
         Matcher matcher = pattern.matcher(data);
 
@@ -122,16 +204,14 @@ public abstract class Service {
             return data;
         } else {
             System.out.println(ANSI_RED + "Вы не правильно ввели дату" + ANSI_RESET);
-            return writeDeadline(scanner);
+            return writeDeadline();
         }
 
     }
 
-    public Command consoleScanner() {
+    public Command consoleScanner() throws StopException {
         System.out.println("Введите команду: ");
-        Scanner scanner = new Scanner(System.in);
         String userCommand = scanner.nextLine();
-
         for (Command command : Command.values()) {
             Pattern pattern = pattern = Pattern.compile(command.getPattern());
             Matcher matcher = matcher = pattern.matcher(userCommand);
@@ -179,5 +259,10 @@ public abstract class Service {
         }
     }
 
+    public static void stopMethod(String stopText) throws StopException {
+        if (stopText.equals("-stop")) {
+            throw new StopException();
+        }
+    }
 
 }

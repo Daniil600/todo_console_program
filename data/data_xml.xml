@@ -4,7 +4,8 @@
         <Description>Описание задачи</Description>
         <Priority>100</Priority>
         <Deadline>2017-02-12</Deadline>
-        <Status>new</Status>
+        <Status>done</Status>
+        <Complete>2023-08-27</Complete>
     </Task>
     <Task caption="Заголовок еще одной задачи" id="2">
         <Description>Описание задачи</Description>

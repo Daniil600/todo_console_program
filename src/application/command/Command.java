@@ -8,7 +8,7 @@ public enum Command {
     LIST_DONE("list -s done", "Вывод выполненных задач", "^list -s done$"),
     STOP("-stop", "Останавливает работу программы", "^-stop$"),
     ADD("-add", "Добавление новой задачи", "^-add$"),
-    EDIT("-edit", "Изменение задачи", "^edit$");
+    EDIT("-edit", "Изменение задачи", "^-edit$");
 
     String commandName;
     String discription;

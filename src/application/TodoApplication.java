@@ -1,6 +1,7 @@
 package application;
 
 import application.command.Command;
+import exception.StopException;
 import model.Task;
 import model.status.Status;
 
@@ -73,12 +74,27 @@ public class TodoApplication {
                     service.showDownTask();
                     continue;
                 case ADD:
-                    Task task = service.addNewTask();
-                    TASK_LIST.add(task);
-                    service.addModelToListStatus(task);
-                    System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
-                    break;
+                    try {
+                        Task task = service.addNewTask();
+                        TASK_LIST.add(task);
+                        service.addModelToListStatus(task);
+                        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
+                        break;
+                    } catch (StopException e) {
+                        System.out.println("Вы вышли из добавления новой задачи");
+                        continue;
+                    }
                 case EDIT:
+                    try {
+                        Task task = service.editTask();
+                        service.removeModelFromListStatus(task);
+                        service.addModelToListStatus(task);
+                        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
+                        break;
+                    } catch (StopException e){
+                    System.out.println("Вы вышли из добавления новой задачи");
+                    continue;
+                }
 
             }
         }
