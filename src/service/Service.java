@@ -41,6 +41,8 @@ public abstract class Service {
 
     public abstract NodeList getNodeList(String path);
 
+    public abstract void createNewFile();
+
     public Task addNewTask() throws StopException {
         Map<String, String> fields = getFields();
         Task task = new Task();

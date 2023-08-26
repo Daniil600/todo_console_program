@@ -58,9 +58,12 @@ public class ServiceXML extends Service {
     }
 
     @Override
-    public void writeToFile(List<Task> allTask) {
-        Document document = super.parser.fromModelToElement(allTask);
+    public void createNewFile() {
+        Document document = super.parser.newDocument();
+        saveTransform(document);
+    }
 
+    private void saveTransform(Document document){
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -68,6 +71,12 @@ public class ServiceXML extends Service {
         } catch (FileNotFoundException | TransformerException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void writeToFile(List<Task> allTask) {
+        Document document = super.parser.fromModelToElement(allTask);
+        saveTransform(document);
     }
 
     private Document getNodeListDocument(DocumentBuilderFactory factory, File inputFile) {

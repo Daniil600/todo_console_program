@@ -86,6 +86,15 @@ public class ParserXML extends ParserAbstract {
 
     }
 
+    @Override
+    public Document newDocument() {
+        Document document = getDocument();
+        Element elementToDoList = document.createElement("ToDoList");
+        document.appendChild(elementToDoList);
+
+        return document;
+    }
+
     private Document getDocument() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;

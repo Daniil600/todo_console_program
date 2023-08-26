@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<ToDoList>
-    <Task caption="Даня" id="1">
-        <Description>Сазонов</Description>
-        <Priority>10</Priority>
-        <Deadline>2000-01-01</Deadline>
-        <Status>new</Status>
-    </Task>
-</ToDoList>
+<ToDoList/>
