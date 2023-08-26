@@ -69,10 +69,7 @@ public abstract class Service {
 
 
     public Task editTask() throws StopException {
-        System.out.println("Выберите id задачи которую хотите изменить");
-        showTask();
-        int id = checkInt();
-        Task task = getTaskById(id);
+        Task task = getTaskById();
         editFieldInTask(task);
 
         return task;
@@ -117,12 +114,16 @@ public abstract class Service {
         return task;
     }
 
-    private Task getTaskById(int id) {
+    private Task getTaskById() throws StopException {
+        System.out.println("Выберите id задачи которую хотите изменить");
+        showTask();
+        int id = checkInt();
         Optional<Task> optionalTask = TASK_LIST.stream().filter(task -> task.getId() == id).findFirst();
         if (optionalTask.isPresent()) {
             return optionalTask.get();
         } else {
-            throw new RuntimeException();
+            System.out.println("Такого ID нет. Попробуйте ещё раз или введите \'-stop\' для выхода из этого режима");
+            return getTaskById();
         }
     }
 
@@ -154,7 +155,13 @@ public abstract class Service {
 
 
     private int getIdUnique() {
-        return TASK_LIST.stream().map(Task::getId).mapToInt(Integer::intValue).max().getAsInt() + 1;
+        OptionalInt optionaId = TASK_LIST.stream().map(Task::getId).mapToInt(Integer::intValue).max();
+        int id = 1;
+        if (optionaId.isPresent()) {
+            return id = optionaId.getAsInt()+1;
+        }else {
+            return id;
+        }
     }
 
     public void addModelToListStatus(Task task) {

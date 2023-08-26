@@ -92,7 +92,7 @@ public class TodoApplication {
                         System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
                         break;
                     } catch (StopException e) {
-                        System.out.println("Вы вышли из добавления новой задачи");
+                        System.out.println("Вы вышли из изменения задачи");
                         break;
                     }
             }

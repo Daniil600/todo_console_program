@@ -1,42 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ToDoList>
-    <Task caption="Заголовок задачи" id="1">
-        <Description>Описание задачи</Description>
-        <Priority>100</Priority>
-        <Deadline>2017-02-12</Deadline>
-        <Status>done</Status>
-        <Complete>2023-08-27</Complete>
-    </Task>
-    <Task caption="Заголовок еще одной задачи" id="2">
-        <Description>Описание задачи</Description>
-        <Priority>100</Priority>
-        <Deadline>2017-02-12</Deadline>
-        <Status>in progress</Status>
-    </Task>
-    <Task caption="Заголовок еще одной задачи" id="3">
-        <Description>Описание задачи</Description>
-        <Priority>100</Priority>
-        <Deadline>2017-02-12</Deadline>
-        <Status>done</Status>
-        <Complete>2017-05-19</Complete>
-    </Task>
-    <Task caption="Задача" id="4">
-        <Description>Задача</Description>
-        <Priority>10</Priority>
-        <Deadline>2000-01-01</Deadline>
-        <Status>new</Status>
-    </Task>
-    <Task caption="Задача" id="5">
-        <Description>Задача</Description>
-        <Priority>10</Priority>
-        <Deadline>2000-01-01</Deadline>
-        <Status>new</Status>
-    </Task>
-    <Task caption="Даня" id="6">
+    <Task caption="Даня" id="1">
         <Description>Сазонов</Description>
         <Priority>10</Priority>
-        <Deadline>2100-01-01</Deadline>
-        <Status>done</Status>
-        <Complete>2023-08-27</Complete>
+        <Deadline>2000-01-01</Deadline>
+        <Status>new</Status>
     </Task>
 </ToDoList>
