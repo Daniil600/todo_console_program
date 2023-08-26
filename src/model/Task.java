@@ -86,7 +86,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return id
+        return status == Status.DONE ? id
                 + " | "
                 + caption
                 + " | "
@@ -98,6 +98,18 @@ public class Task {
                 + " | "
                 + status
                 + " | "
-                + complete;
+                + complete
+                    :
+                        id
+                        + " | "
+                        + caption
+                        + " | "
+                        + description
+                        + " | "
+                        + priority
+                        + " | "
+                        + deadline
+                        + " | "
+                        + status;
     }
 }

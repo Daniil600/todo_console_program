@@ -27,10 +27,10 @@ public class ParserXML extends ParserAbstract {
         model.setCaption(ATTRIBUTE_WITH_VALUES.get("caption"));
         model.setDescription(TAG_NAME_WITH_VALUES.get("Description"));
         model.setPriority(Integer.parseInt(TAG_NAME_WITH_VALUES.get("Priority")));
-        model.setDeadline(ParserXML.toLocalDate(TAG_NAME_WITH_VALUES.get("Deadline")));
-        model.setStatus(ParserXML.toStatus(TAG_NAME_WITH_VALUES.get("Status")));
+        model.setDeadline(toLocalDate(TAG_NAME_WITH_VALUES.get("Deadline")));
+        model.setStatus(toStatus(TAG_NAME_WITH_VALUES.get("Status")));
         if (model.getStatus() == Status.DONE) {
-            model.setComplete(ParserXML.toLocalDate(TAG_NAME_WITH_VALUES.get("Complete")));
+            model.setComplete(toLocalDate(TAG_NAME_WITH_VALUES.get("Complete")));
         }
         return model;
     }
@@ -54,7 +54,7 @@ public class ParserXML extends ParserAbstract {
             Text textelementDescription = document.createTextNode(task.getDescription());
             Text textelementPriority = document.createTextNode(String.valueOf(task.getPriority()));
             Text textelementDeadline = document.createTextNode(String.valueOf(task.getDeadline()));
-            Text textelementStatus = document.createTextNode(String.valueOf(task.getStatus()));
+            Text textelementStatus = document.createTextNode(String.valueOf(task.getStatus().getName()));
 
 
             elementDescription.appendChild(textelementDescription);

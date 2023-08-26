@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import parser.ParserAbstract;
+import parser.ParserXML;
 
 import javax.xml.XMLConstants;
 
@@ -24,23 +25,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceXML extends Service {
-    ParserAbstract converterXML;
 
     public ServiceXML() {
-        this.converterXML = new parser.ParserXML();
+        super(new ParserXML());
     }
 
     @Override
     public List<Task> getAllModel() {
         Task model;
-        NodeList taskList = getNodeList(XML_FORMAT);
+        NodeList taskList = getNodeList(PATH_XML_FORMAT);
         List<Task> tasks = new ArrayList<>();
 
         for (int index = 0; index < taskList.getLength(); index++) {
             Node taskNode = taskList.item(index);
             if (taskNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element taskElement = (Element) taskNode;
-                model = converterXML.fromElementToModel(taskElement);
+                model = super.parser.fromElementToModel(taskElement);
                 tasks.add(model);
             }
         }
@@ -59,12 +59,12 @@ public class ServiceXML extends Service {
 
     @Override
     public void writeToFile(List<Task> allTask) {
-        Document document = converterXML.fromModelToElement(allTask);
+        Document document = super.parser.fromModelToElement(allTask);
 
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream("data/data_xml_copy_copy.xml")));
+            transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(PATH_XML_FORMAT)));
         } catch (FileNotFoundException | TransformerException e) {
             throw new RuntimeException(e);
         }
