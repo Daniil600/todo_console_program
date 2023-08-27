@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceXML extends Service {
-
     public ServiceXML() {
         super(new ParserXML());
     }

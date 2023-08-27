@@ -5,6 +5,7 @@ import exception.StopException;
 import model.Task;
 import model.status.Status;
 
+import parser.ParserAbstract;
 import service.Service;
 
 import static application.color.ColorConsole.ANSI_RESET;
@@ -15,7 +16,7 @@ import service.ServiceXML;
 
 public class TodoApplication {
 
-    Service service;
+    private final Service service;
 
     public TodoApplication() {
         this.service = new ServiceXML();
