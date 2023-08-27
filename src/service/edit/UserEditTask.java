@@ -12,10 +12,10 @@ import static application.color.ColorConsole.ANSI_YELLOW;
 import static application.console.ConsoleOutput.showTask;
 import static mapper.TaskMapper.toLocalDate;
 import static mapper.TaskMapper.toStatus;
-import static service.Service.*;
 import static service.check.UserInputChecker.checkInt;
 import static service.check.UserInputChecker.scanner;
 import static service.create.UserCreateTask.*;
+import static service.task_list.TaskManager.*;
 import static service.ñonstants.ApplicationConstants.FIELDS_FOR_EDIT;
 
 public class UserEditTask {
@@ -34,7 +34,6 @@ public class UserEditTask {
         IN_PROGRESS_TASK_LIST.removeIf(taskInProgress -> taskInProgress.getId() == task.getId());
         DONE_TASK_LIST.removeIf(taskDone -> taskDone.getId() == task.getId());
     }
-
 
 
     public static Task editFieldInTask(Task task) throws StopException {

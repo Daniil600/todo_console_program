@@ -4,7 +4,7 @@ import application.command.Command;
 import model.Task;
 
 import static application.color.ColorConsole.*;
-import static service.Service.*;
+import static service.task_list.TaskManager.*;
 
 public class ConsoleOutput {
     public static void showNewTask() {

@@ -4,23 +4,21 @@ import application.command.Command;
 import exception.StopException;
 import model.Task;
 import model.status.Status;
+import parser.ParserXML;
 import service.Service;
 import service.ServiceXML;
 
-import static application.color.ColorConsole.ANSI_RESET;
-import static application.color.ColorConsole.ANSI_YELLOW;
 import static application.console.ConsoleOutput.*;
 import static application.console.UserInputCommand.consoleScanner;
-import static service.Service.*;
 import static service.create.UserCreateTask.createTask;
 import static service.edit.UserEditTask.editTask;
+import static service.task_list.TaskManager.*;
 
 public class TodoApplication {
-
-    private final Service service;
+    Service service;
 
     public TodoApplication() {
-        this.service = new ServiceXML();
+        this.service = new ServiceXML(new ParserXML());
     }
 
     private void init() {

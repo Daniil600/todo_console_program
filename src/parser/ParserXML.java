@@ -11,12 +11,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
+import static mapper.ParserMapper.*;
 import static mapper.TaskMapper.toLocalDate;
 import static mapper.TaskMapper.toStatus;
 import static service.ñonstants.ApplicationConstants.*;
 
 
-public class ParserXML extends ParserAbstract {
+public class ParserXML implements Parser {
 
     public Task fromElementToModel(Element element) {
         for (int i = 0; i < ATTRIBUTE.length; i++) {

@@ -6,7 +6,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import parser.ParserAbstract;
+import parser.Parser;
 import parser.ParserXML;
 
 import javax.xml.XMLConstants;
@@ -24,9 +24,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceXML extends Service {
-    public ServiceXML() {
-        super(new ParserXML());
+import static parser.Parser.PATH_XML_FORMAT;
+
+public class ServiceXML implements Service {
+    Parser parser;
+
+    public ServiceXML(ParserXML parser) {
+        this.parser = parser;
     }
 
     @Override
@@ -39,7 +43,7 @@ public class ServiceXML extends Service {
             Node taskNode = taskList.item(index);
             if (taskNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element taskElement = (Element) taskNode;
-                model = super.parser.fromElementToModel(taskElement);
+                model = parser.fromElementToModel(taskElement);
                 tasks.add(model);
             }
         }
@@ -58,7 +62,7 @@ public class ServiceXML extends Service {
 
     @Override
     public void createNewFile() {
-        Document document = super.parser.newDocument();
+        Document document = parser.newDocument();
         saveTransform(document);
     }
 
@@ -74,7 +78,7 @@ public class ServiceXML extends Service {
 
     @Override
     public void writeToFile(List<Task> allTask) {
-        Document document = super.parser.fromModelToElement(allTask);
+        Document document = parser.fromModelToElement(allTask);
         saveTransform(document);
     }
 
