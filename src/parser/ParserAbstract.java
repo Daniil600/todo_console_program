@@ -25,6 +25,7 @@ public abstract class ParserAbstract {
     public abstract Task fromElementToModel(Element element);
 
     public abstract Document fromModelToElement(List<Task> tasks);
+
     public abstract Document newDocument();
 
     public LocalDate toLocalDate(String dateString) {

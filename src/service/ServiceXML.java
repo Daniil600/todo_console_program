@@ -63,7 +63,7 @@ public class ServiceXML extends Service {
         saveTransform(document);
     }
 
-    private void saveTransform(Document document){
+    private void saveTransform(Document document) {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");

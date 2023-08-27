@@ -160,8 +160,8 @@ public abstract class Service {
         OptionalInt optionaId = TASK_LIST.stream().map(Task::getId).mapToInt(Integer::intValue).max();
         int id = 1;
         if (optionaId.isPresent()) {
-            return id = optionaId.getAsInt()+1;
-        }else {
+            return id = optionaId.getAsInt() + 1;
+        } else {
             return id;
         }
     }

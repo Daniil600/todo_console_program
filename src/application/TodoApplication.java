@@ -24,7 +24,7 @@ public class TodoApplication {
     private void init() {
         try {
             TASK_LIST = service.getAllModel();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             service.createNewFile();
             init();
         }

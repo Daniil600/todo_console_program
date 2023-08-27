@@ -1,4 +1,4 @@
 package exception;
 
-public class StopException extends Exception{
+public class StopException extends Exception {
 }
