@@ -7,7 +7,8 @@
 ![Image alt](https://github.com/Daniil600/todo_program/blob/master/picture/img.png)
 
 <br></br>
-<b>Для её решения вам необходимо изменить настройки в idea.</b>
+<b>Для её решения вам необходимо изменить настройки в idea</b>
+<br></br>
 Вот полный путь: File -> Settings -> Editor -> File Encoding -> Global Encoting и Project encoding меняем на Default.
 <br></br>
 У вас при запуске TODO должен выглядить так:
