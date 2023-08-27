@@ -10,6 +10,7 @@
 <b>Для её решения вам необходимо изменить настройки в idea</b>
 <br></br>
 Вот полный путь: File -> Settings -> Editor -> File Encoding -> Global Encoting и Project encoding меняем на Default.
+После этого перезагрузите Idea.
 <br></br>
 У вас при запуске TODO консоль Idea должна выглядить так:
 <br></br>
