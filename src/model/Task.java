@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Task {
-    int id;
-    String caption;
-    String description;
-    int priority;
-    LocalDate deadline;
-    Status status;
-    LocalDate complete;
+    private int id;
+    private String caption;
+    private String description;
+    private int priority;
+    private LocalDate deadline;
+    private Status status;
+    private LocalDate complete;
 
     public Task() {
     }
