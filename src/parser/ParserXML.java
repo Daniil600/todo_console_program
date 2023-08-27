@@ -1,9 +1,7 @@
 package parser;
 
 import model.Task;
-
 import model.status.Status;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
@@ -13,7 +11,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
-import static service.Service.TAG_NAME;
+import static mapper.TaskMapper.toLocalDate;
+import static mapper.TaskMapper.toStatus;
+import static service.ñonstants.ApplicationConstants.*;
+
 
 public class ParserXML extends ParserAbstract {
 

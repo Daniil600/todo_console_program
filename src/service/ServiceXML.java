@@ -88,5 +88,4 @@ public class ServiceXML extends Service {
             throw new RuntimeException(e);
         }
     }
-
 }

@@ -4,15 +4,16 @@ import application.command.Command;
 import exception.StopException;
 import model.Task;
 import model.status.Status;
-
-import parser.ParserAbstract;
 import service.Service;
+import service.ServiceXML;
 
 import static application.color.ColorConsole.ANSI_RESET;
 import static application.color.ColorConsole.ANSI_YELLOW;
+import static application.console.ConsoleOutput.*;
+import static application.console.UserInputCommand.consoleScanner;
 import static service.Service.*;
-
-import service.ServiceXML;
+import static service.create.UserCreateTask.createTask;
+import static service.edit.UserEditTask.editTask;
 
 public class TodoApplication {
 
@@ -47,43 +48,40 @@ public class TodoApplication {
     public void application() {
         init();
 
-        service.welcomeMessage();
+        welcomeMessage();
 
-        service.showTask();
+        showTask();
 
-        service.showConsoleCommand();
+        showConsoleCommand();
 
         service.writeToFile(TASK_LIST);
 
         boolean flag = true;
 
         while (flag) {
-            Command userCommand = service.consoleScanner();
+            Command userCommand = consoleScanner();
             switch (userCommand) {
                 case STOP:
                     flag = false;
                     break;
                 case HELP:
-                    service.showConsoleCommand();
+                    showConsoleCommand();
                     continue;
                 case LIST:
-                    service.showTask();
+                    showTask();
                     continue;
                 case LIST_NEW:
-                    service.showNewTask();
+                    showNewTask();
                     continue;
                 case LIST_IN_PROGRESS:
-                    service.showInProgressTask();
+                    showInProgressTask();
                     continue;
                 case LIST_DONE:
-                    service.showDownTask();
+                    showDownTask();
                     continue;
                 case ADD:
                     try {
-                        Task task = service.addNewTask();
-                        TASK_LIST.add(task);
-                        service.addModelToListStatus(task);
-                        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
+                        createTask();
                         break;
                     } catch (StopException e) {
                         System.out.println("Вы вышли из добавления новой задачи");
@@ -91,10 +89,7 @@ public class TodoApplication {
                     }
                 case EDIT:
                     try {
-                        Task task = service.editTask();
-                        service.removeModelFromListStatus(task);
-                        service.addModelToListStatus(task);
-                        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
+                        editTask();
                         break;
                     } catch (StopException e) {
                         System.out.println("Вы вышли из изменения задачи");
