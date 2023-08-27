@@ -60,11 +60,6 @@ public class ServiceXML implements Service {
 
     }
 
-    @Override
-    public void createNewFile() {
-        Document document = parser.newDocument();
-        saveTransform(document);
-    }
 
     private void saveTransform(Document document) {
         try {

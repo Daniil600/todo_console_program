@@ -22,12 +22,9 @@ public class TodoApplication {
     }
 
     private void init() {
-        try {
-            TASK_LIST = service.getAllModel();
-        } catch (RuntimeException e) {
-            service.createNewFile();
-            init();
-        }
+
+        TASK_LIST = service.getAllModel();
+
 
         for (Task task : TASK_LIST) {
             if (task.getStatus() == Status.NEW) {

@@ -11,10 +11,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
-import static mapper.ParserMapper.*;
+import static mapper.ParserMapper.getAttributeByIndex;
+import static mapper.ParserMapper.getTagNameByIndex;
 import static mapper.TaskMapper.toLocalDate;
 import static mapper.TaskMapper.toStatus;
-import static service.ñonstants.ApplicationConstants.*;
+import static service.ñonstants.ApplicationConstants.TAG_NAME;
 
 
 public class ParserXML implements Parser {
@@ -86,15 +87,6 @@ public class ParserXML implements Parser {
 
         return document;
 
-    }
-
-    @Override
-    public Document newDocument() {
-        Document document = getDocument();
-        Element elementToDoList = document.createElement("ToDoList");
-        document.appendChild(elementToDoList);
-
-        return document;
     }
 
     private Document getDocument() {
