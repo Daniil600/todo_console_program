@@ -25,12 +25,12 @@ public abstract class Service {
     public static final String[] TAG_NAME = new String[]{"Description", "Priority", "Deadline", "Status", "Complete"};
 
 
-    ParserAbstract parser;
-    Scanner scanner;
+    protected ParserAbstract parser;
+    protected Scanner scanner;
 
     public Service(ParserAbstract parser) {
         this.parser = parser;
-        scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
     public static final String PATH_XML_FORMAT = "data/data_xml.xml";
