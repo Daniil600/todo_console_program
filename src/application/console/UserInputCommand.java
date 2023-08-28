@@ -9,7 +9,7 @@ import static service.check.UserInputChecker.scanner;
 
 public class UserInputCommand {
     public static Command consoleScanner() {
-        System.out.println("Введите команду: ");
+        System.out.println("Если Вы захотите выйти из команды которую выбрали, просто введите \"-stop\"\nВведите команду: ");
         String userCommand = scanner.nextLine();
         for (Command command : Command.values()) {
             Pattern pattern = pattern = Pattern.compile(command.getPattern());
