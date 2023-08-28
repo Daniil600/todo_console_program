@@ -49,7 +49,6 @@ public class TodoApplication {
 
         showConsoleCommand();
 
-        writeToFile(TASK_LIST);
 
         boolean flag = true;
 
@@ -57,6 +56,7 @@ public class TodoApplication {
             Command userCommand = consoleScanner();
             switch (userCommand) {
                 case STOP:
+                    writeToFile(TASK_LIST);
                     flag = false;
                     break;
                 case HELP:

@@ -82,6 +82,11 @@ public class UserCreateTask {
                 dataForTask.put(field, status);
                 continue;
             }
+            if (field.equals("Priority")) {
+                String priority = String.valueOf(checkInt());
+                dataForTask.put(field, priority);
+                continue;
+            }
             userText = scanner.nextLine();
             stopMethod(userText);
             dataForTask.put(field, userText);
