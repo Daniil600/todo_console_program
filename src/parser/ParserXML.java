@@ -15,12 +15,13 @@ import static mapper.ParserMapper.getAttributeByIndex;
 import static mapper.ParserMapper.getTagNameByIndex;
 import static mapper.TaskMapper.toLocalDate;
 import static mapper.TaskMapper.toStatus;
+import static parser.constant.ParserConstats.*;
 import static service.ñonstants.ApplicationConstants.TAG_NAME;
 
 
-public class ParserXML implements Parser {
+public class ParserXML {
 
-    public Task fromElementToModel(Element element) {
+    public static Task fromElementToModel(Element element) {
         for (int i = 0; i < ATTRIBUTE.length; i++) {
             ATTRIBUTE_WITH_VALUES.put(ATTRIBUTE[i], getAttributeByIndex(i, element));
         }
@@ -40,8 +41,8 @@ public class ParserXML implements Parser {
         return model;
     }
 
-    @Override
-    public Document fromModelToElement(List<Task> tasks) {
+
+    public static Document fromModelToElement(List<Task> tasks) {
         Document document = getDocument();
         Element elementToDoList = document.createElement("ToDoList");
 
@@ -89,7 +90,7 @@ public class ParserXML implements Parser {
 
     }
 
-    private Document getDocument() {
+    public static Document getDocument() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         try {

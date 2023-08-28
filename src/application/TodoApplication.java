@@ -10,6 +10,8 @@ import service.ServiceXML;
 
 import static application.console.ConsoleOutput.*;
 import static application.console.UserInputCommand.consoleScanner;
+import static parser.util.ParserUtil.writeToFile;
+import static path.Paths.PATH_XML_FORMAT;
 import static service.create.UserCreateTask.createTask;
 import static service.edit.UserEditTask.editTask;
 import static service.task_list.TaskManager.*;
@@ -23,7 +25,7 @@ public class TodoApplication {
 
     private void init() {
 
-        TASK_LIST = service.getAllModel();
+        TASK_LIST = service.getAllModel(PATH_XML_FORMAT);
 
 
         for (Task task : TASK_LIST) {
@@ -49,7 +51,7 @@ public class TodoApplication {
 
         showConsoleCommand();
 
-        service.writeToFile(TASK_LIST);
+        writeToFile(TASK_LIST);
 
         boolean flag = true;
 
@@ -92,7 +94,7 @@ public class TodoApplication {
                     }
             }
         }
-        service.writeToFile(TASK_LIST);
+        writeToFile(TASK_LIST);
 
     }
 

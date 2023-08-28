@@ -3,6 +3,7 @@ package model;
 import model.status.Status;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Task {
     private int id;
@@ -82,6 +83,18 @@ public class Task {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && priority == task.priority && Objects.equals(caption, task.caption) && Objects.equals(description, task.description) && Objects.equals(deadline, task.deadline) && status == task.status && Objects.equals(complete, task.complete);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, caption, description, priority, deadline, status, complete);
+    }
 
     @Override
     public String toString() {

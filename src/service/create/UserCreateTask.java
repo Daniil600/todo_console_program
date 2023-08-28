@@ -4,6 +4,7 @@ import exception.StopException;
 import model.Task;
 import model.status.Status;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalInt;
@@ -44,6 +45,11 @@ public class UserCreateTask {
         task.setDescription(fields.get("Description"));
         task.setPriority(Integer.parseInt(fields.get("Priority")));
         task.setDeadline(toLocalDate(fields.get("Deadline")));
+
+        String status = fields.get("Status");
+        if (status.equals("done")) {
+            task.setComplete(LocalDate.now());
+        }
         task.setStatus(toStatus(fields.get("Status")));
         return task;
     }
@@ -79,7 +85,8 @@ public class UserCreateTask {
                 continue;
             }
             if (field.equals("Status")) {
-                dataForTask.put(field, writeStatus());
+                String status = writeStatus();
+                dataForTask.put(field, status);
                 continue;
             }
             userText = scanner.nextLine();

@@ -10,9 +10,9 @@ public enum Command {
     ADD("-add", "Добавление новой задачи", "^-add$"),
     EDIT("-edit", "Изменение задачи", "^-edit$");
 
-    String commandName;
-    String discription;
-    String pattern;
+    private String commandName;
+    private String discription;
+    private String pattern;
 
     Command(String commandName, String discription, String pattern) {
         this.commandName = commandName;
