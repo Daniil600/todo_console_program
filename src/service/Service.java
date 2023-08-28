@@ -8,8 +8,9 @@ import java.util.*;
 public interface Service {
     List<Task> getAllModel(String path);
 
-    public Task editTask() throws StopException;
+    Task editTask() throws StopException;
 
-    public void createTask() throws StopException;
+    void createTask() throws StopException;
 
+    void deleteTask() throws StopException;
 }

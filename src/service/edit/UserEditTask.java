@@ -68,16 +68,5 @@ public class UserEditTask {
         return task;
     }
 
-    public static Task getTaskById() throws StopException {
-        System.out.println("Выберите id задачи которую хотите изменить");
-        showTask();
-        int id = checkInt();
-        Optional<Task> optionalTask = TASK_LIST.stream().filter(task -> task.getId() == id).findFirst();
-        if (optionalTask.isPresent()) {
-            return optionalTask.get();
-        } else {
-            System.out.println("Такого ID нет. Попробуйте ещё раз или введите \'-stop\' для выхода из этого режима");
-            return getTaskById();
-        }
-    }
+
 }

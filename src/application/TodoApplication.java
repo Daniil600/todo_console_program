@@ -90,6 +90,14 @@ public class TodoApplication {
                         System.out.println("Вы вышли из изменения задачи");
                         break;
                     }
+                case DELETE:
+                    try {
+                        service.deleteTask();
+                        break;
+                    } catch (StopException e) {
+                        System.out.println("Вы вышли из изменения задачи");
+                        break;
+                    }
             }
         }
         writeToFile(TASK_LIST);
