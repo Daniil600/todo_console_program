@@ -12,15 +12,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ServiceXML_Test {
+public class ServiceImpl_Test {
     private static final String PATH_DATA_EMPETY_TEST = "test/data_test/data_xml_empty_test.xml";
     private static final String PATH_DATA_TEST = "test/data_test/data_xml_test.xml";
     ParserXML parser;
-    ServiceXML service;
+    ServiceImpl service;
 
-    public ServiceXML_Test() {
+    public ServiceImpl_Test() {
         this.parser = new ParserXML();
-        this.service = new ServiceXML(parser);
+        this.service = new ServiceImpl(parser);
     }
 
     @Test

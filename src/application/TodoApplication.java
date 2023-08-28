@@ -6,21 +6,19 @@ import model.Task;
 import model.status.Status;
 import parser.ParserXML;
 import service.Service;
-import service.ServiceXML;
+import service.ServiceImpl;
 
 import static application.console.ConsoleOutput.*;
 import static application.console.UserInputCommand.consoleScanner;
 import static parser.util.ParserUtil.writeToFile;
 import static path.Paths.PATH_XML_FORMAT;
-import static service.create.UserCreateTask.createTask;
-import static service.edit.UserEditTask.editTask;
 import static service.task_list.TaskManager.*;
 
 public class TodoApplication {
     Service service;
 
     public TodoApplication() {
-        this.service = new ServiceXML(new ParserXML());
+        this.service = new ServiceImpl(new ParserXML());
     }
 
     private void init() {
@@ -78,7 +76,7 @@ public class TodoApplication {
                     continue;
                 case ADD:
                     try {
-                        createTask();
+                        service.createTask();
                         break;
                     } catch (StopException e) {
                         System.out.println("Вы вышли из добавления новой задачи");
@@ -86,7 +84,7 @@ public class TodoApplication {
                     }
                 case EDIT:
                     try {
-                        editTask();
+                        service.editTask();
                         break;
                     } catch (StopException e) {
                         System.out.println("Вы вышли из изменения задачи");

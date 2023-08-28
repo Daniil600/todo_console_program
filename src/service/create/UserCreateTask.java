@@ -20,13 +20,6 @@ import static service.сonstants.ApplicationConstants.ALL_FIELDS;
 
 public class UserCreateTask {
 
-    public static void createTask() throws StopException {
-        Task task = addNewTask();
-        TASK_LIST.add(task);
-        addModelToListStatus(task);
-        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
-    }
-
     public static void addModelToListStatus(Task task) {
         if (task.getStatus() == Status.NEW) {
             NEW_TASK_LIST.add(task);
@@ -37,7 +30,7 @@ public class UserCreateTask {
         }
     }
 
-    private static Task addNewTask() throws StopException {
+    public static Task addNewTask() throws StopException {
         Map<String, String> fields = inputFieldsForModel();
         Task task = new Task();
         task.setId(Integer.parseInt(fields.get("id")));

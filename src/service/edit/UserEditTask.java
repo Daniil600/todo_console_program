@@ -20,14 +20,7 @@ import static service.сonstants.ApplicationConstants.FIELDS_FOR_EDIT;
 
 public class UserEditTask {
 
-    public static Task editTask() throws StopException {
-        Task task = getTaskById();
-        removeModelFromListStatus(task);
-        addModelToListStatus(task);
-        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
-        editFieldInTask(task);
-        return task;
-    }
+
 
     public static void removeModelFromListStatus(Task task) {
         NEW_TASK_LIST.removeIf(taskNew -> taskNew.getId() == task.getId());
