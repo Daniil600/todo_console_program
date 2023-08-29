@@ -30,7 +30,9 @@ import static parser.constant.ParserConstats.*;
 import static path.Paths.PATH_XML_FORMAT;
 import static service.constants.ApplicationConstants.TAG_NAME;
 
-
+/**
+ * Класс XMLTransformer представляет собой инструмент для чтения и сохранения задач из/в XML-файл.
+ */
 public class XMLTransformer implements ITaskTransformer {
     public List<Task> readTasks(String path) {
         Task model;
