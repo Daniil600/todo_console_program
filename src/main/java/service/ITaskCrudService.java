@@ -15,5 +15,5 @@ public interface ITaskCrudService {
 
     void deleteTask() throws StopException;
 
-    void saveTasks(List<Task> taskList);
+    void saveTasks(List<Task> taskList, String path);
 }

@@ -10,6 +10,7 @@ import service.TaskCrudService;
 
 import static application.console.ConsoleOutput.*;
 import static application.console.UserInputCommand.consoleScanner;
+import static path.Paths.PATH_XML_FORMAT;
 import static service.task_list.TaskManager.*;
 
 public class TodoApplication {
@@ -53,7 +54,7 @@ public class TodoApplication {
             Command userCommand = consoleScanner();
             switch (userCommand) {
                 case STOP:
-                    crudService.saveTasks(TASK_LIST);
+                    crudService.saveTasks(TASK_LIST, PATH_XML_FORMAT);
                     flag = false;
                     break;
                 case HELP:
@@ -97,7 +98,7 @@ public class TodoApplication {
                     }
             }
         }
-        crudService.saveTasks(TASK_LIST);
+        crudService.saveTasks(TASK_LIST, PATH_XML_FORMAT);
 
     }
 

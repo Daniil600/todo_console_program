@@ -11,9 +11,9 @@ import static mapper.TaskMapper.toStatus;
 import static service.check.UserInputChecker.checkInt;
 import static service.check.UserInputChecker.scanner;
 import static service.constants.ApplicationConstants.FIELDS_FOR_EDIT;
-import static service.create.UserCreateTask.inputDeadline;
-import static service.create.UserCreateTask.writeStatus;
+
 import static service.task_list.TaskManager.*;
+import static service.util.UtilService.*;
 
 public class UserEditTask {
 

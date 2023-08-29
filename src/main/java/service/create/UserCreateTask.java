@@ -17,10 +17,11 @@ import static mapper.TaskMapper.toStatus;
 import static service.check.UserInputChecker.*;
 import static service.constants.ApplicationConstants.ALL_FIELDS;
 import static service.task_list.TaskManager.*;
+import static service.util.UtilService.*;
 
 public class UserCreateTask {
 
-    public static void addModelToListStatus(Task task) {
+    public void addModelToListStatus(Task task) {
         if (task.getStatus() == Status.NEW) {
             NEW_TASK_LIST.add(task);
             TASK_LIST.add(task);
@@ -33,7 +34,7 @@ public class UserCreateTask {
         }
     }
 
-    public static Task addNewTask() throws StopException {
+    public Task addNewTask() throws StopException {
         Map<String, String> fields = inputFieldsForModel();
         Task task = new Task();
         task.setId(Integer.parseInt(fields.get("id")));
@@ -50,22 +51,8 @@ public class UserCreateTask {
         return task;
     }
 
-    public static String writeStatus() throws StopException {
-        System.out.println(ANSI_PURPLE + "Выбирите один из возможных статусов : " + ANSI_RESET);
-        int countStatus = 0;
-        HashMap<Integer, String> statusMap = new HashMap<>();
-        for (Status status : Status.values()) {
-            System.out.println(ANSI_PURPLE + ++countStatus + ") " + status.getName() + ANSI_RESET);
-            statusMap.put(countStatus, status.getName());
-        }
 
-        System.out.println(ANSI_PURPLE + "Выберете число статуса, который вы хотите поставить: " + ANSI_RESET);
-
-        return statusMap.get(checkInt());
-
-    }
-
-    public static Map<String, String> inputFieldsForModel() throws StopException {
+    public Map<String, String> inputFieldsForModel() throws StopException {
         Map<String, String> dataForTask = new HashMap<>();
         System.out.println(ANSI_CYAN + "Для добавления нового задания введи следующие данные" + ANSI_RESET);
         String userText;
@@ -97,21 +84,8 @@ public class UserCreateTask {
         return dataForTask;
     }
 
-    public static String inputDeadline() throws StopException {
-        System.out.println(ANSI_PURPLE + "Введите дату в формате '2000-01-01'" + ANSI_RESET);
-        String data = scanner.nextLine();
-        stopMethod(data);
-        Pattern pattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
-        Matcher matcher = pattern.matcher(data);
-        if (matcher.find()) {
-            return data;
-        } else {
-            System.out.println(ANSI_RED + "Вы не правильно ввели дату" + ANSI_RESET);
-            return inputDeadline();
-        }
-    }
 
-    public static int getIdUnique() {
+    public int getIdUnique() {
         OptionalInt optionaId = TASK_LIST.stream().map(Task::getId).mapToInt(Integer::intValue).max();
         int id = 1;
         if (optionaId.isPresent()) {

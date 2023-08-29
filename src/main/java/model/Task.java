@@ -17,6 +17,15 @@ public class Task {
     public Task() {
     }
 
+    public Task(int id, String caption, String description, int priority, LocalDate deadline, Status status) {
+        this.id = id;
+        this.caption = caption;
+        this.description = description;
+        this.priority = priority;
+        this.deadline = deadline;
+        this.status = status;
+    }
+
     public Task(int id, String caption, String description, int priority, LocalDate deadline, Status status, LocalDate complete) {
         this.id = id;
         this.caption = caption;

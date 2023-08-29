@@ -32,9 +32,9 @@ import static service.constants.ApplicationConstants.TAG_NAME;
 
 
 public class XMLTransformer implements ITaskTransformer {
-    public List<Task> readTasks() {
+    public List<Task> readTasks(String path) {
         Task model;
-        NodeList taskList = getNodeList(PATH_XML_FORMAT);
+        NodeList taskList = getNodeList(path);
         List<Task> tasks = new ArrayList<>();
 
         for (int index = 0; index < taskList.getLength(); index++) {
@@ -69,7 +69,7 @@ public class XMLTransformer implements ITaskTransformer {
     }
 
     @Override
-    public void saveTasks(List<Task> tasks) {
+    public void saveTasks(List<Task> tasks, String path) {
         Document document = getDocument();
         Element elementToDoList = document.createElement("ToDoList");
 
@@ -113,7 +113,7 @@ public class XMLTransformer implements ITaskTransformer {
         }
         document.appendChild(elementToDoList);
 
-        saveTransform(document);
+        saveTransform(document, path);
     }
 
     public static Document getDocument() {
@@ -128,11 +128,11 @@ public class XMLTransformer implements ITaskTransformer {
     }
 
 
-    public static void saveTransform(Document document) {
+    public static void saveTransform(Document document, String path) {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(PATH_XML_FORMAT)));
+            transformer.transform(new DOMSource(document), new StreamResult(new FileOutputStream(path)));
         } catch (FileNotFoundException | TransformerException e) {
             throw new RuntimeException(e);
         }
