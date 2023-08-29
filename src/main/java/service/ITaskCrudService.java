@@ -6,7 +6,7 @@ import model.Task;
 import java.util.List;
 
 public interface ITaskCrudService {
-    
+
     List<Task> readAllTasks();
 
     Task editTask() throws StopException;
