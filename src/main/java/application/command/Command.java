@@ -11,9 +11,9 @@ public enum Command {
     EDIT("edit", "Изменение задачи", "^edit$"),
     DELETE("delete", "удаление задачи", "^delete$");
 
-    private String commandName;
-    private String discription;
-    private String pattern;
+    private final String commandName;
+    private final String discription;
+    private final String pattern;
 
     Command(String commandName, String discription, String pattern) {
         this.commandName = commandName;
