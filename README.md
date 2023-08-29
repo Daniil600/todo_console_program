@@ -1,22 +1,5 @@
 # Это консольная программа TODO
 
-<h2>Для корректной работы</h2>
-Этот раздел необходимо выполнить, если у вас возникла такая проблема:
-<br></br>
-
-![Image alt](https://github.com/Daniil600/todo_program/blob/master/picture/img.png)
-
-</br>
-<b>Для её решения вам необходимо изменить настройки в idea</b>
-</br>
-Вот полный путь: File -> Settings -> Editor -> File Encoding -> Global Encoting и Project encoding меняем на Default.
-После этого перезагрузите Idea.
-</br>
-У вас при запуске TODO консоль Idea должна выглядить так:
-<br></br>
-
-![Image alt](https://github.com/Daniil600/todo_program/blob/master/picture/img_1.png)
-
 <h2>О проекте</h2>
 <h3>Цель:</h3>
 Этот проект выполняет роль TODO list с сохранением всех задача в xml.
