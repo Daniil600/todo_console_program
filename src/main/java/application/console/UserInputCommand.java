@@ -5,13 +5,11 @@ import application.command.Command;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static application.console.ConsoleOutput.showConsoleCommand;
-import static application.console.ConsoleOutput.welcomeMessage;
 import static service.check.UserInputChecker.scanner;
 
 public class UserInputCommand {
     public static Command consoleScanner() {
-        System.out.println("Если Вы захотите выйти из команды которую выбрали, просто введите \"-stop\" " +
+        System.out.println("Если Вы захотите выйти из команды которую выбрали, просто введите \"stop\" " +
                 "или если хотите посмотреть список команд, введите \"help\"\nВведите команду: ");
         String userCommand = scanner.nextLine();
         for (Command command : Command.values()) {
