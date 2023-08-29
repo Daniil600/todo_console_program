@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ToDoList>
+    <Task caption="Task 1" id="1">
+        <Description>Task description 1</Description>
+        <Priority>1</Priority>
+        <Deadline>2023-08-29</Deadline>
+        <Status>in progress</Status>
+    </Task>
+    <Task caption="Task 2" id="2">
+        <Description>Task description 2</Description>
+        <Priority>2</Priority>
+        <Deadline>2023-08-29</Deadline>
+        <Status>done</Status>
+        <Complete>2023-08-29</Complete>
+    </Task>
+    <Task caption="Task 3" id="3">
+        <Description>Task description 3</Description>
+        <Priority>3</Priority>
+        <Deadline>2023-08-29</Deadline>
+        <Status>new</Status>
+    </Task>
+</ToDoList>

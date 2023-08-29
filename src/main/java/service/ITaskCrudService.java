@@ -6,7 +6,7 @@ import model.Task;
 import java.util.List;
 
 public interface ITaskCrudService {
-    
+
     List<Task> readAllTasks();
 
     Task editTask() throws StopException;
@@ -15,5 +15,5 @@ public interface ITaskCrudService {
 
     void deleteTask() throws StopException;
 
-    void saveTasks(List<Task> taskList);
+    void saveTasks(List<Task> taskList, String path);
 }
