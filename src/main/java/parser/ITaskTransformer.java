@@ -7,5 +7,5 @@ import java.util.List;
 public interface ITaskTransformer {
     List<Task> readTasks(String path);
 
-     public void saveTasks(List<Task> tasks, String path);
+    void saveTasks(List<Task> tasks, String path);
 }

@@ -27,6 +27,7 @@ public class UtilService {
         return statusMap.get(checkInt());
 
     }
+
     public static String inputDeadline() throws StopException {
         System.out.println(ANSI_PURPLE + "¬ведите дату в формате '2000-01-01'" + ANSI_RESET);
         String data = scanner.nextLine();

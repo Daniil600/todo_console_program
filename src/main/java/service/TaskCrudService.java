@@ -14,27 +14,28 @@ import static application.color.ColorConsole.ANSI_YELLOW;
 import static path.Paths.PATH_XML_FORMAT;
 import static service.check.UserInputChecker.getTaskById;
 import static service.task_list.TaskManager.TASK_LIST;
-/**
 
- Класс {@code TaskCrudService} реализует интерфейс {@link ITaskCrudService} и предоставляет сервисный уровень
- для операций CRUD (create, read, update, delete) задач.
- <p>
- Этот класс использует {@link ITaskTransformer} для чтения и сохранения списка задач.
- <p>
- Дополнительно он использует следующие классы:
- <ul>
- <li>{@link UserEditTask} для редактирования задачи;</li>
- <li>{@link UserDeleteTask} для удаления задачи;</li>
- <li>{@link UserCreateTask} для создания новой задачи;</li>
- <li>{@link service.util.UtilService} для содержания дополнительных статичных методов,которые используются разными классами сервиса;</li>
- </ul>
- @author Daniil Sazonov
- @see ITaskCrudService
- @see ITaskTransformer
- @see UserEditTask
- @see UserDeleteTask
- @see UserCreateTask
- @since 1.0
+/**
+ * Класс {@code TaskCrudService} реализует интерфейс {@link ITaskCrudService} и предоставляет сервисный уровень
+ * для операций CRUD (create, read, update, delete) задач.
+ * <p>
+ * Этот класс использует {@link ITaskTransformer} для чтения и сохранения списка задач.
+ * <p>
+ * Дополнительно он использует следующие классы:
+ * <ul>
+ * <li>{@link UserEditTask} для редактирования задачи;</li>
+ * <li>{@link UserDeleteTask} для удаления задачи;</li>
+ * <li>{@link UserCreateTask} для создания новой задачи;</li>
+ * <li>{@link service.util.UtilService} для содержания дополнительных статичных методов,которые используются разными классами сервиса;</li>
+ * </ul>
+ *
+ * @author Daniil Sazonov
+ * @see ITaskCrudService
+ * @see ITaskTransformer
+ * @see UserEditTask
+ * @see UserDeleteTask
+ * @see UserCreateTask
+ * @since 1.0
  */
 public class TaskCrudService implements ITaskCrudService {
 

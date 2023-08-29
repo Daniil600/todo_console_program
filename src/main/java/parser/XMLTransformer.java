@@ -27,7 +27,6 @@ import static mapper.ParserMapper.getTagNameByIndex;
 import static mapper.TaskMapper.toLocalDate;
 import static mapper.TaskMapper.toStatus;
 import static parser.constant.ParserConstats.*;
-import static path.Paths.PATH_XML_FORMAT;
 import static service.constants.ApplicationConstants.TAG_NAME;
 
 /**

@@ -12,24 +12,24 @@ import static application.console.ConsoleOutput.*;
 import static application.console.UserInputCommand.consoleScanner;
 import static path.Paths.PATH_XML_FORMAT;
 import static service.task_list.TaskManager.*;
+
 /**
  * Класс TodoApplication представляет приложение для управления задачами.
  * Позволяет пользователю выполнять операции добавления, редактирования и удаления задач,
  * а также просматривать список всех задач и списки задач по статусам.
  * <p>
- *  Команды для взаимодействия с программой:
- *  <ul>
- *  <li>helt - отображение возможных команд</li>
- *  <li>stop - для остановки программы с сохранением данных</li>
- *  <li>edit - для редактирования задачи;</li>
- *  <li>delete - для удаления задачи;</li>
- *  <li>add - для создания новой задачи;</li>
- *  <li>list -s new - отображение задач со статусом new</li>
- *  <li>list -s in progress - отображение задач со статусом progress</li>
- *  <li>list -s done - отображение задач со статусом done</li>
- *  <li>list - отображение всех задач</li>
- *  </ul>
- *
+ * Команды для взаимодействия с программой:
+ * <ul>
+ * <li>helt - отображение возможных команд</li>
+ * <li>stop - для остановки программы с сохранением данных</li>
+ * <li>edit - для редактирования задачи;</li>
+ * <li>delete - для удаления задачи;</li>
+ * <li>add - для создания новой задачи;</li>
+ * <li>list -s new - отображение задач со статусом new</li>
+ * <li>list -s in progress - отображение задач со статусом progress</li>
+ * <li>list -s done - отображение задач со статусом done</li>
+ * <li>list - отображение всех задач</li>
+ * </ul>
  */
 public class TodoApplication {
     private final ITaskCrudService crudService;
