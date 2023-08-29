@@ -29,7 +29,7 @@ public enum Command {
         return pattern;
     }
 
-    public String getDiscription() {
+    public String getDescription() {
         return discription;
     }
 

@@ -23,10 +23,13 @@ public class UserCreateTask {
     public static void addModelToListStatus(Task task) {
         if (task.getStatus() == Status.NEW) {
             NEW_TASK_LIST.add(task);
+            TASK_LIST.add(task);
         } else if (task.getStatus() == Status.IN_PROGRESS) {
             IN_PROGRESS_TASK_LIST.add(task);
+            TASK_LIST.add(task);
         } else {
             DONE_TASK_LIST.add(task);
+            TASK_LIST.add(task);
         }
     }
 

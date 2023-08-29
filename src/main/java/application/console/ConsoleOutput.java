@@ -38,7 +38,7 @@ public class ConsoleOutput {
     public static void showConsoleCommand() {
         System.out.println(ANSI_PURPLE + "\nВот консольные команды которые доступны:\n");
         for (Command command : Command.values()) {
-            System.out.println(ANSI_PURPLE + command.getDiscription() + ": " + command.getCommandName() + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + command.getDescription() + ": " + command.getCommandName() + ANSI_RESET);
         }
     }
 }

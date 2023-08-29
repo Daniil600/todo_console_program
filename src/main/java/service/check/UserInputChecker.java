@@ -28,7 +28,7 @@ public class UserInputChecker {
     }
 
     public static void stopMethod(String stopText) throws StopException {
-        if (stopText.equals("-stop")) {
+        if (stopText.equals("stop")) {
             throw new StopException();
         }
     }

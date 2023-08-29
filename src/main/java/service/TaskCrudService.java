@@ -3,6 +3,7 @@ package service;
 import exception.StopException;
 import model.Task;
 import parser.ITaskTransformer;
+import service.edit.UserEditTask;
 
 import java.util.List;
 
@@ -12,16 +13,17 @@ import static service.check.UserInputChecker.getTaskById;
 import static service.create.UserCreateTask.addModelToListStatus;
 import static service.create.UserCreateTask.addNewTask;
 import static service.delete.UserDeleteTask.removeModelFromAllList;
-import static service.edit.UserEditTask.editFieldInTask;
-import static service.edit.UserEditTask.removeModelFromListStatus;
 import static service.task_list.TaskManager.TASK_LIST;
 
 public class TaskCrudService implements ITaskCrudService {
 
     private final ITaskTransformer transformer;
+    private final UserEditTask userEditTask;
+
 
     public TaskCrudService(ITaskTransformer transformer) {
         this.transformer = transformer;
+        userEditTask = new UserEditTask();
     }
 
     @Override
@@ -31,10 +33,10 @@ public class TaskCrudService implements ITaskCrudService {
 
     public Task editTask() throws StopException {
         Task task = getTaskById();
-        removeModelFromListStatus(task);
+        removeModelFromAllList(task);
+        task = userEditTask.editFieldInTask(task);
         addModelToListStatus(task);
-        System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
-        editFieldInTask(task);
+        System.out.println(ANSI_YELLOW + "Задача успешно изменена" + ANSI_RESET);
         return task;
     }
 
