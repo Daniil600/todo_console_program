@@ -73,7 +73,6 @@ public class XMLTransformer implements ITaskTransformer {
     public void saveTasks(List<Task> tasks, String path) {
         Document document = getDocument();
         Element elementToDoList = document.createElement("ToDoList");
-
         for (Task task : tasks) {
             Element elementTask = document.createElement("Task");
             elementTask.setAttribute("id", String.valueOf(task.getId()));
@@ -108,8 +107,6 @@ public class XMLTransformer implements ITaskTransformer {
                 elementComplete.appendChild(textElementComplete);
                 elementTask.appendChild(elementComplete);
             }
-
-
             elementToDoList.appendChild(elementTask);
         }
         document.appendChild(elementToDoList);

@@ -68,7 +68,6 @@ public class TaskCrudService implements ITaskCrudService {
 
     public void createTask() throws StopException {
         Task task = userCreateTask.addNewTask();
-        TASK_LIST.add(task);
         userCreateTask.addModelToListStatus(task);
         System.out.println(ANSI_YELLOW + "Задача успешна добавлена" + ANSI_RESET);
     }

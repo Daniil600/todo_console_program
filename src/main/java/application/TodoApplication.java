@@ -116,8 +116,6 @@ public class TodoApplication {
                     }
             }
         }
-        crudService.saveTasks(TASK_LIST, PATH_XML_FORMAT);
-
     }
 
 
