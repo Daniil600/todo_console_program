@@ -33,14 +33,10 @@ public class TaskCrudServiceTest {
 
     @Test
     public void testReadAllTasks() {
-        // Создание фиктивных задач
         List<Task> tasks = new ArrayList<>();
 
-
-        // Заглушка для метода чтения задач из трансформера
         when(transformer.readTasks(any(String.class))).thenReturn(tasks);
 
-        // Вызов метода и проверка результатов
         List<Task> result = taskCrudService.readAllTasks();
         assertEquals(tasks, result);
     }
