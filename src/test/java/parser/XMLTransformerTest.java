@@ -34,14 +34,10 @@ public class XMLTransformerTest {
 
     @Test
     public void testSaveTasks() {
-
-        // Сохраняем задачи в файл
         xmlTransformer.saveTasks(tasks, PATH_XML_LIST_TEST);
 
-        // Читаем задачи из файла
         List<Task> result = xmlTransformer.readTasks(PATH_XML_LIST_TEST);
 
-        // Удаляем созданный файл
         File file = new File(PATH_XML_LIST_TEST);
         file.delete();
 
